@@ -1,6 +1,30 @@
 from copy import deepcopy
 
 
+def insert_run_at_position(par, pos, txt=''):
+    """Insert a new run with text {txt} into paragraph {par}
+    at given position {pos}.
+
+    Returns the newly created run.
+    """
+    p = par._p
+    new_run = par.add_run(txt)
+    p.insert(pos + 1, new_run._r)
+
+    return new_run
+
+
+def insert_run_before(par, run, txt=''):
+    """Insert a new run with text {txt} into paragraph before given {run}.
+
+    Returns the newly created run.
+    """
+    run_2 = par.add_run(txt)
+    run._r.addprevious(run_2._r)
+
+    return run_2
+
+
 def insert_run_after(par, run, txt=''):
     """Insert a new run with text {txt} into paragraph after given {run}.
 
